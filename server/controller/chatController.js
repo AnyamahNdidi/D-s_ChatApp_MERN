@@ -9,32 +9,39 @@ const accessChat = asyncHandler(async(req, res) => {
     if (!userID)
     {
         console.log("User id is not found")
-        res.status(404)  
+        res.status(404).json({ message: "User id not found"})
     }
+    
+    // this code check find data that has the login user d and the input user id
 
     let isChat = await chatModel.find({
         isGroupChat: false,
         $and: [
-            {users: {$elemMatch: {$eq:req.user_id}}},
-            {users: {$elemMatch: {$eq:req.userID}}}
+            {users: {$elemMatch: {$eq:req.user._id}}},
+            {users: {$elemMatch: {$eq:userID}}}
         ]
     }).populate("users", "-password").populate("latestMessage")
+
+    console.log("opps", isChat)
 
     isChat = await userModel.populate(isChat, {
         path: "latestMessage.sender",
         select:"name pic email",
     })
+    console.log("jksnsjk", isChat)
 
+    // this condition if there is more that on object inside the array
     if (isChat.length > 0)
     {
-        res.send(isChat[0])
-    } else
-    {
-        let chatData = {
+       return res.send(isChat[0])
+    } 
+    
+    let chatData = {
                 chatName: "sender",
                 isGroupChat: false,
                 users:[req.user._id, userID]
-        }
+    }
+    
         try
         {
             const createChat = await chatModel.create(chatData)
@@ -45,12 +52,12 @@ const accessChat = asyncHandler(async(req, res) => {
              
         } catch (error)
         {
-            res.status(400).json({
+           res.status(400).json({
                 message: `ERROR FOR ${error.message}`
             })
         }
         
-    }
+    
 
 })
 

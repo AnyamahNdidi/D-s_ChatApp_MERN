@@ -32,7 +32,7 @@ const SignUp = () => {
 
     const toast = useToast()
 
-    const postDetails = (pics) => {
+    const postImageFile = (pics) => {
         setpicLoading(true)
         if (pics === undefined)
         {
@@ -195,7 +195,7 @@ const SignUp = () => {
                   type="file"
                   accept="image/*"
                 //    onChange={(e) => postDetails(e.target.files[0])}
-                    onChange={(e) => postDetails(e.target.files[0])}
+                    onChange={(e) => postImageFile(e.target.files[0])}
                   />
                  
               
