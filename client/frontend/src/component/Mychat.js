@@ -21,15 +21,17 @@ import {
 
 
 } from '@chakra-ui/react'
+
 import Usefetch from './Usefetch'
 import ChatLoading from './ChatLoading';
 
 import axios from "axios"
-import {getSender} from "../config/ChatLogic"
+import { getSender } from "../config/ChatLogic"
+import GroupChatModel from "../component/miscellanea/GroupChatModel"
 
 
 
-const Mychat = () => {
+const Mychat = ({fetchAgain}) => {
   const [loggedUser, setLoggedUser] = React.useState()
   const { user, chats, setChats, selectedChat, setSelectedChat } = useContext(ChatContext)
   const toast = useToast()
@@ -49,7 +51,7 @@ const Mychat = () => {
   
   console.log("show chat",data)
   console.log("this is user chat",chats)
-  // setChats(data)
+  setChats(data)
 
   // const getChat = async () => {
   //   try
@@ -60,10 +62,10 @@ const Mychat = () => {
   //       }
   //     }
 
-  //     await axios.get("http://localhost:5000/api/chat", config).then((res) => {
-  //       console.log(res.data)
-  //       setChats(res.data)
-  //     })
+  //     const { data } = await axios.get("http://localhost:5000/api/chat", config);
+
+  //     console.log(data)
+  //     setChats(data)
     
   //   } catch (error)
   //   {
@@ -84,7 +86,7 @@ const Mychat = () => {
     setLoggedUser(JSON.parse(localStorage.getItem("userInfor")));
     
   
-  }, []);
+  }, [fetchAgain]);
 
 
   return (
@@ -110,13 +112,16 @@ const Mychat = () => {
       
       >
         Recent Chats
+
+        <GroupChatModel>
           <Button
             d="flex"
             fontSize={{ base: "17px", md: "10px", lg: "17px" }}
             rightIcon={<AddIcon />}
           >
             New Group Chat
-        </Button>
+          </Button>
+          </GroupChatModel>
        
       </Box>
        <Box
@@ -148,7 +153,8 @@ const Mychat = () => {
                         {!props.isGroupChat ?
                           (getSender(loggedUser, props.users))
                             :
-                          (<>{ props.isGroupChat}</>)
+                          (<>{ props.chatName
+}</>)
                         }
 
                       </Text>

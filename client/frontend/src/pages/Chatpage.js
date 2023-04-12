@@ -11,7 +11,7 @@ import Mychat from '../component/Mychat'
 const Chatpage = () => {
 
   const { data } = Usefetch("http://localhost:5000/api/chats")
-  const {user} = useContext(ChatContext)
+  const {user,setFetchAgain,fetchAgain} = useContext(ChatContext)
     
   return (
     <div style={{ width: "100%", }}>
@@ -21,8 +21,8 @@ const Chatpage = () => {
        display="flex" justifyContent="space-between" w="100%" h="91.5vh" p="10px"
        
       >
-          {user && <Mychat/>}
-          {user && <ChatBox/>}
+          {user && <Mychat fetchAgain={fetchAgain}/>}
+          {user && <ChatBox fetchAgain={fetchAgain} setFetchAgain={setFetchAgain}/>}
       
        
       </Box> 
