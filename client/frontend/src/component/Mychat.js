@@ -86,7 +86,7 @@ const Mychat = ({fetchAgain}) => {
     setLoggedUser(JSON.parse(localStorage.getItem("userInfor")));
     
   
-  }, [fetchAgain]);
+  }, []);
 
 
   return (

@@ -184,7 +184,7 @@ const removememberFromGroup = asyncHandler(async (req, res) => {
     if (!removeMember) {
       return res.status(404).json({message:"caht not found"})
   } else {
-    res.json(addedMember);
+    res.json(removeMember);
   }
 
 

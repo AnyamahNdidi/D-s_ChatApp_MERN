@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import { ChatContext } from "../Context/ChatProvider"
 
 const Usefetch = (url, config) => {
     const [data, setData] = useState()
     const rendered = React.useRef(false)
+    const {user,setFetchAgain,fetchAgain} = React.useContext(ChatContext)
 
     useEffect(() => {
             axios.get(url,config).then((res) => {
@@ -17,7 +19,7 @@ const Usefetch = (url, config) => {
         //     rendered.current = true
         // }
                 
-    },[url])
+    },[url,fetchAgain])
    
     return {data}
 }

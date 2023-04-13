@@ -9,6 +9,6 @@ router.route("/").get(verify, fetchChatc)
 router.route("/group").post(verify, groupChatCreate)
 router.route("/rename").put(verify, updateGroupName)
 router.route("/addnew").put(verify, addmemberToGroup)
-router.route("/rename").put(verify, removememberFromGroup)
+router.route("/groupremove").put(verify, removememberFromGroup)
 
 module.exports = router
