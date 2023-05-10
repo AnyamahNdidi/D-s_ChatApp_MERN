@@ -24,4 +24,4 @@ const messageModel = mongoose.Schema({
 
 const messages = mongoose.model("messages", messageModel)
 
-module.exports - messages
+module.exports = messages

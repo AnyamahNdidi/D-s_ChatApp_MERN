@@ -12,7 +12,8 @@ const accessChat = asyncHandler(async(req, res) => {
         res.status(404).json({ message: "User id not found"})
     }
     
-    // this code check find data that has the login user d and the input user id
+    // this code check find data that has the login user d and the input user users(the person you want to chat with)
+    // req.user._id is coming from the token the verify function(middle ware) passed on the router (which is the login in user id)
 
     let isChat = await chatModel.find({
         isGroupChat: false,

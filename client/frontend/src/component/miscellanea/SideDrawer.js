@@ -40,7 +40,7 @@ import UserListItem from '../userAvatar/UserListItem';
 
 const SideDrawer = () => {
   const { user, chats, setChats,selectedChat, setSelectedChat } = useContext(ChatContext)
-  console.log("hello user",user.data.token)
+  console.log("hello user",user.token)
   const [search, setSearch] = useState("")
   const [searchResult, setSearchResult] = useState([])
   const [loading, setLoading] = useState(false)

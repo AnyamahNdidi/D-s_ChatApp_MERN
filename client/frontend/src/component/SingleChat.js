@@ -15,7 +15,7 @@ import UpdateGroupChatModel from './miscellanea/UpdateGroupChatModel';
 
 const SingleChat = () => {
   const { user, chats, setChats, selectedChat, setSelectedChat } = React.useContext(ChatContext)
-  console.log("selected my chat", selectedChat )
+  console.log("selected my chat", selectedChat, user )
   return (
     <>
       { 
@@ -32,7 +32,7 @@ const SingleChat = () => {
 
             >
                <IconButton
-              display={{ base: "flex", md: "none" }}
+              display={{ base: "flex", md: "none" }}  
               icon={<ArrowBackIcon />}
               onClick={() => setSelectedChat("")}
               />
@@ -40,8 +40,8 @@ const SingleChat = () => {
                 !selectedChat.isGroupChat
                   ? (
                     <>
-                      {getSender(user, selectedChat.data.users)}
-                      <UserChatProvider user={getSenderFull(user, selectedChat.data.users) } />
+                      {getSender(user, selectedChat.users)}
+                      <UserChatProvider user={getSenderFull(user, selectedChat.users) } />
                     </>
                   )
                   :

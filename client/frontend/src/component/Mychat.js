@@ -37,7 +37,7 @@ const Mychat = ({fetchAgain}) => {
   const toast = useToast()
   
   
-  console.log(user.data._id)
+  console.log("oh god",user.data.toke)
   
   
    const config = {
@@ -50,15 +50,15 @@ const Mychat = ({fetchAgain}) => {
   const { data } = Usefetch("http://localhost:5000/api/chat", config)
   
   console.log("show chat",data)
-  console.log("this is user chat",chats)
-  setChats(data)
+  console.log("this is user chattttt", chats)
+
 
   // const getChat = async () => {
   //   try
   //   {
   //     const config = {
   //       headers: {
-  //         Authorization: `Bearer ${user.data.token}`
+  //         Authorization: `Bearer ${user.token}`
   //       }
   //     }
 
@@ -84,7 +84,10 @@ const Mychat = ({fetchAgain}) => {
 
     React.useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem("userInfor")));
-    
+    // getChat()
+    if(data){
+        setChats(data)
+    }
   
   }, []);
 

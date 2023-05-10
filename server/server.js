@@ -4,6 +4,7 @@ const cors = require("cors")
 const connectDb = require("./config/db")
 const useRoutes = require("./routes/userRouter")
 const chatRoute = require("./routes/chatRoute")
+const messageRoute = require("./routes/messageRouter")
 const {notFound, errorHandler} = require("./middleware/errorMiddleware")
 
 dotenv.config();
@@ -34,6 +35,7 @@ app.get("/api/chats/:id", (req, res) => {
 
 app.use("/api/user", useRoutes)
 app.use("/api/chat", chatRoute)
+app.use("/api/message", messageRoute)
 app.use(notFound);
 app.use(errorHandler);
 app.listen(port, ()=>{
